@@ -1,0 +1,11 @@
+ALGORITHM SmartWasteBin
+1. INITIALIZE ultrasonic_sensor, LoRa_module
+2. WHILE true:
+   a. distance = ultrasonic_measure()
+   b. fill_percent = 100 * (1 - distance/50)
+   c. IF fill_percent > 50 THEN
+      i. packet = "BinID:1,FILL:" + fill_percent
+      ii. LoRa_send(packet)
+      iii. LOG "Alert sent to authorities"
+   d. SLEEP(15 minutes)  // Power saving
+END WHILE
